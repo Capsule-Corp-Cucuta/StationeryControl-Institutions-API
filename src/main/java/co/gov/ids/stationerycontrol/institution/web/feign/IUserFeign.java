@@ -11,10 +11,10 @@ import co.gov.ids.stationerycontrol.institution.domain.dto.User;
 @FeignClient(name = "STATIONERYCONTROL-USER-API")
 public interface IUserFeign {
 
-    @GetMapping("/api/user/{identification}")
-    public ResponseEntity<User> findByIdentification(@PathVariable("identification") String identification);
+    @GetMapping("/api/user/{id}")
+    public ResponseEntity<User> findByIdentification(@PathVariable("id") String identification);
 
-    @PutMapping("/api/user")
-    public ResponseEntity update(@RequestBody User user);
+    @PutMapping("/api/user/{id}")
+    public ResponseEntity update(@PathVariable("id") String id, @RequestBody User user);
 
 }

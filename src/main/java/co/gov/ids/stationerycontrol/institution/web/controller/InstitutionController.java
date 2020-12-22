@@ -29,7 +29,7 @@ public class InstitutionController {
         if (userResponse.getStatusCodeValue() == 200) {
             userResponse.getBody().setTownship(institution.getTownship());
             userResponse.getBody().setInstitution(institution.getName());
-            userFeign.update(userResponse.getBody());
+            userFeign.update(userResponse.getBody().getId(), userResponse.getBody());
             return new ResponseEntity<>(service.create(institution), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -43,7 +43,7 @@ public class InstitutionController {
             if (userResponse.getStatusCodeValue() == 200) {
                 userResponse.getBody().setTownship(null);
                 userResponse.getBody().setInstitution(null);
-                userFeign.update(userResponse.getBody());
+                userFeign.update(userResponse.getBody().getId(), userResponse.getBody());
             }
             return new ResponseEntity(HttpStatus.OK);
         } else {
