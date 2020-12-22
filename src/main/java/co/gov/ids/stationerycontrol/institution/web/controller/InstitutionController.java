@@ -2,6 +2,8 @@ package co.gov.ids.stationerycontrol.institution.web.controller;
 
 import java.util.List;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,6 +79,13 @@ public class InstitutionController {
         return service.findByAttendant(attendant)
                 .map(institutions -> new ResponseEntity<>(institutions, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/count")
+    @ApiOperation(value = "Get count", notes = "Service for get how many institutions was be registered.")
+    @ApiResponse(code = 200, message = "OK")
+    public ResponseEntity<Long> count() {
+        return new ResponseEntity<>(service.countInstitutions(), HttpStatus.OK);
     }
 
 }

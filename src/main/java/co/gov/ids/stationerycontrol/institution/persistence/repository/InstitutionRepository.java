@@ -55,4 +55,9 @@ public class InstitutionRepository implements IInstitutionRepository {
     public Optional<List<Institution>> findByAttendant(String attendant) {
         return repository.findByAttendant(attendant).map(entities -> mapper.toInstitutions(entities));
     }
+
+    @Override
+    public long countInstitutions() {
+        return repository.count();
+    }
 }

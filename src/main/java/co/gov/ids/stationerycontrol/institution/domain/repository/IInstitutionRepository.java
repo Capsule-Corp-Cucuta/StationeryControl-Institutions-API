@@ -18,4 +18,5 @@ public interface IInstitutionRepository {
 
     Optional<List<Institution>> findByAttendant(String attendant);
 
+    long countInstitutions();
 }
